@@ -23,7 +23,7 @@ int main() {
     while (1) {
         menu();
         scanf("%d", &choice);
-
+        getchar();
         switch (choice) {
         case 0: {
             system("cls");
