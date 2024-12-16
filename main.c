@@ -34,13 +34,11 @@ int main() {
         case 1: {
             system("cls");
             Open_Read(&file_, filename);
-            getchar();
             break;
             }
         case 2: {
             system("cls");
             Display(&file_);
-            getchar();
             break;
             }
         case 3: {
@@ -49,7 +47,6 @@ int main() {
             printf("Enter the word to search: ");
             scanf("%s", word);
             Search(&file_, word);
-            getchar();
             break;
             }
         case 4: {
@@ -60,7 +57,6 @@ int main() {
             printf("Enter the new word: \n");
             scanf("%s", new_word);
             Replace(&file_, old_word, new_word);
-            getchar();
             break;
             }
         case 5: {
@@ -69,7 +65,6 @@ int main() {
             printf("Enter the new line: \n");
             fgets(new_line, MAX_LENGTH, stdin);
             Add(&file_, new_line);
-            getchar();
             break;
             }
         case 6: {
@@ -78,13 +73,11 @@ int main() {
             printf("Enter the line number to be deleted: ");
             scanf("%d", &line_number);
             Delete(&file_, line_number);
-            getchar();
             break;
             }
         default: {
             system("cls");
             printf("Invalid choice! Please enter again.\n");
-            getchar();
             }
         }
         while (1) {
