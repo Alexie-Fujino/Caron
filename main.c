@@ -17,28 +17,31 @@ void menu() {
 }
 
 int main() {
-    File file_ = { .count = 0 };
-    char filename[100]= "1.c";
+    Line* lines = NULL; // 声明结构数组
+    int line_count = 0;
+    char filename[100];
     int choice;
     while (1) {
         menu();
         scanf("%d", &choice);
-        getchar();
         switch (choice) {
         case 0: {
             system("cls");
-            Save(&file_, filename);
+            Save(lines, line_count, filename);
+            Free(lines, line_count);
             system("pause");
             exit(0);
-            }
+        }
         case 1: {
             system("cls");
-            Open_Read(&file_, filename);
+            printf("Please enter the filname:");
+            scanf("%s", filename);
+            Open_Read(&lines, &line_count, filename);
             break;
             }
         case 2: {
             system("cls");
-            Display(&file_);
+            Display(lines, line_count);
             break;
             }
         case 3: {
@@ -46,7 +49,7 @@ int main() {
             char word[50];
             printf("Enter the word to search: ");
             scanf("%s", word);
-            Search(&file_, word);
+            Search(lines, line_count, word);
             break;
             }
         case 4: {
@@ -56,15 +59,19 @@ int main() {
             scanf("%s", old_word);
             printf("Enter the new word: \n");
             scanf("%s", new_word);
-            Replace(&file_, old_word, new_word);
+            Replace(lines, line_count, old_word, new_word);
             break;
             }
         case 5: {
             system("cls");
+            int line_number;
+            printf("Enter the line number to be added before: ");
+            scanf("%d", &line_number);
+            getchar(); // 重要！取消换行符，下方同理
             char new_line[MAX_LENGTH];
             printf("Enter the new line: \n");
             fgets(new_line, MAX_LENGTH, stdin);
-            Add(&file_, new_line);
+            Add(&lines, &line_count, new_line, line_number);
             break;
             }
         case 6: {
@@ -72,7 +79,7 @@ int main() {
             int line_number;
             printf("Enter the line number to be deleted: ");
             scanf("%d", &line_number);
-            Delete(&file_, line_number);
+            Delete(&lines, &line_count, line_number);
             break;
             }
         default: {
@@ -81,6 +88,7 @@ int main() {
             }
         }
         while (1) {
+            getchar();
             printf("\nType ENTER to return to the main menu.\n");
             if (getchar()) break;
         }
