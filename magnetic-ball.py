@@ -70,7 +70,7 @@ def update(frame):
         # 速度平滑移动 (阻尼效果)
         velocities[i] *= 0.85
 
-        # 更新环和小球位置
+        # 更新小球位置
         circle.center = positions[i]
         line.set_data([point[0], positions[i][0]], [point[1], positions[i][1]])
 
